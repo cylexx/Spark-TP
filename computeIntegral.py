@@ -16,7 +16,8 @@ if __name__ == "__main__":
         .getOrCreate()
 
     partitions = int(sys.argv[1]) if len(sys.argv) > 1 else 2
-    n = 81*81*81.
+    n = float(sys.argv[2]) if len(sys.argv) > 2 else 81*81*81
+
     a = 1
     b = 10
 
@@ -25,7 +26,7 @@ if __name__ == "__main__":
     def f(_):
 	return ((1./_)*pas)
 
-    count = spark.sparkContext.parallelize(np.arange(1, b, pas), 50).map(f).reduce(add)
+    count = spark.sparkContext.parallelize(np.arange(1, b, pas), partitions).map(f).reduce(add)
 
     print("Integrate 1/x from 1 to 10 is %f" % (count))
 

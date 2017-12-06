@@ -15,7 +15,7 @@ def parseLine(line):
    		return searchObj.group().split(" ")
 	else:
 		return  ""
-	
+
 
 if __name__ == "__main__":
 
@@ -34,8 +34,8 @@ if __name__ == "__main__":
 		.mapValues(lambda x: float(sum(x))/float(len(x)))\
 		.sortBy(lambda a: a[1],False)
 
-	
-	
+
+
 
 	map.saveAsTextFile("file:///spark-2.2.0-bin-hadoop2.7/wordsOut")
 sc.stop()
